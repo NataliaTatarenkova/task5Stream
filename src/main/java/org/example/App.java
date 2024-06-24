@@ -28,7 +28,7 @@ public class App
                                       //.peek(System.out::println)
                 .filter(s -> s.length() > 4).collect(Collectors.groupingBy(String::valueOf, Collectors.counting()));
 
-        result.entrySet().stream().filter(m -> m.getValue() > 5).sorted(Map.Entry.comparingByValue()).forEach(map -> System.out.println(map.getKey() + " " + map.getValue()));
+        result.entrySet().stream().filter(m -> m.getValue() > 5).sorted(Map.Entry.comparingByValue()).forEach(map -> System.out.println(map.getKey() + " - " + map.getValue()));
 
     }
 
