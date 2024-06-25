@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.example.entity.Author;
 import org.example.entity.Book;
 
 /**
@@ -20,16 +18,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        task3(generateStrings());
-    }
-
-    public static void task3(List<String> strings) {
-        Map<String, Long> result = strings.stream().flatMap(s -> Arrays.stream(s.split(" "))).map(s -> s.replaceAll(",", "").replaceAll("\\.", "").replaceAll("!", "").replaceAll(":", ""))
-                                      //.peek(System.out::println)
-                .filter(s -> s.length() > 4).collect(Collectors.groupingBy(String::valueOf, Collectors.counting()));
-
-        result.entrySet().stream().filter(m -> m.getValue() > 5).sorted(Map.Entry.comparingByValue()).forEach(map -> System.out.println(map.getKey() + " - " + map.getValue()));
-
+        task1();
     }
 
     public static void task1() {
@@ -50,16 +39,5 @@ public class App
         //получите список всех авторов
         System.out.println("Список всех авторов: ");
         books.stream().peek(b -> System.out.println(b.getName() + ": ")).flatMap(b -> b.getAuthors().stream()).forEach(a -> System.out.println(a.getName()));
-    }
-
-    public static List<String> generateStrings() {
-        List<String> strings = new ArrayList<>();
-        strings.add("Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик");
-        strings.add("Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик, Котик");
-        strings.add("Жил-был старик со старухою. Просит старик: «Испеки, старуха, колобок». – «Из чего печь-то? Муки нету». – «Э-эх, старуха! По коробу поскреби, по сусеку помети; авось муки и наберется».");
-        strings.add("Взяла старуха крылышко, по коробу поскребла, по сусеку помела, и набралось муки пригоршни с две. Замесила на сметане, изжарила в масле и положила на окошечко постудить.");
-        strings.add("Колобок полежал-полежал, да вдруг и покатился – с окна на лавку, с лавки на пол, по полу да к дверям, перепрыгнул через порог в сени, из сеней на крыльцо, с крыльца на двор, со двора за ворота, дальше и дальше.");
-        strings.add("Катится колобок по дороге, а навстречу ему заяц: «Колобок, колобок! Я тебя съем». – «Не ешь меня, косой зайчик! Я тебе песенку спою», – сказал колобок и запел:");
-        return strings;
     }
 }
