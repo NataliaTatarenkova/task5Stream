@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.example.collector.AuthorCollector;
+import org.example.entity.Author;
 import org.example.entity.Book;
 
 /**
@@ -18,7 +20,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        task1();
+
+        List<Book> books = Book.getBooks(9);
+        List<Author> authors = books.stream().map(Book::getAuthors).collect(AuthorCollector.toList());
+        //task1();
     }
 
     public static void task1() {

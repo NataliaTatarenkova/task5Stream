@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
 import org.example.entity.Author;
 
 public class AuthorCollector implements Collector<Author, List<Author>, List<Author>> {
+
+
+    public static AuthorCollector toList() {
+        return new AuthorCollector();
+    }
     @Override
     public Supplier<List<Author>> supplier() {
         return ArrayList::new;
@@ -40,10 +45,6 @@ public class AuthorCollector implements Collector<Author, List<Author>, List<Aut
     @Override
     public Set<Characteristics> characteristics() {
         return Set.of(Characteristics.UNORDERED);
-    }
-
-    public BiConsumer<List<Author>, Author> toList() {
-        return List::add;
     }
 
 }
