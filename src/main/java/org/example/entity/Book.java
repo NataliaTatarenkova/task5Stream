@@ -24,6 +24,12 @@ public class Book {
         this.authors = (List<Author>) createAuthors.get();
     }
 
+    public Book(String name, int numberOfPages) {
+        this.name = name;
+        this.numberOfPages = numberOfPages;
+        this.authors = new ArrayList<>();
+    }
+
     public static List<Book> getBooks(int count){
         List<Book> authors = new ArrayList<>();
         Supplier<List<Author>> createAuthors = () -> {

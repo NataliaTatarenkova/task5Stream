@@ -20,10 +20,14 @@ public class App
 {
     public static void main( String[] args )
     {
-
-        List<Book> books = Book.getBooks(9);
-        List<Author> authors = books.stream().map(Book::getAuthors).collect(AuthorCollector.toList());
+        task3(Book.getBooks(2));
         //task1();
+    }
+
+    public static List<Author> task3(List<Book> books) {
+        List<Author> authors =  books.stream().flatMap(a -> a.getAuthors().stream()).collect(AuthorCollector.toList());
+        System.out.println(authors);
+        return authors;
     }
 
     public static void task1() {

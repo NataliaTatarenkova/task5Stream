@@ -1,6 +1,9 @@
 package org.example;
 
 
+import org.example.collector.AuthorCollector;
+import org.example.entity.Author;
+import org.example.entity.Book;
 import org.example.task3.Words;
 import org.junit.Test;
 
@@ -11,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +33,19 @@ import static org.junit.Assert.assertFalse;
 public class WordsExerciseTest {
 
     private static final Random rand = new Random();
+
+    @Test
+    public void testTask2() {
+        Book book = new Book("Война и мир", 1500);
+        Book book1 = new Book("Идиот", 450);
+        Author author = new Author("Лев Толстой", (short) 82);
+        Author author1 = new Author("Федор Достоевский", (short) 59);
+        book.setAuthors(Collections.singletonList(author));
+        book1.setAuthors(Collections.singletonList(author1));
+        List<Book> books = Arrays.asList(book, book1);
+        List<Author> authors = Arrays.asList(author, author1);
+        assertEquals(authors, books.stream().flatMap(a -> a.getAuthors().stream()).collect(AuthorCollector.toList()));
+    }
 
     @Test
     public void testWarAndPeace() throws IOException {
